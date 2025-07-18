@@ -1,6 +1,8 @@
 /*****************************************
 * ESP32 GPS VKEL 9600 Bds
 * https://github.com/LilyGO/TTGO-T-Beam/blob/master/GPS/GPS.ino 
+* https://github.com/mikalhart/TinyGPSPlus
+* https://arduiniana.org/libraries/tinygpsplus/
 * Modificado por EA5JTT 20250716 para:
 *  - Que funcione con placa LilyGo T-Display OLED GPS
 *  - Mostrar la salida tambien por el  display OLED si se tiene instalado
@@ -114,7 +116,8 @@ void loop()
   Serial.println(gps.time.second());
   Serial.println("**********************");
 
-  // DISPLAY
+  // DISPLAY ESTATICO
+  /* 
   display.clearDisplay();
   display.display();
   display.setCursor(0,12);          
@@ -138,9 +141,54 @@ void loop()
   display.print(":");
   display.println(gps.time.second());
   display.display();
+ */
+ // DISPLAY DINAMICO
+  
+  display.clearDisplay();
+  display.display();
+  display.setCursor(0,12);          
+  display.print(F("Lat: "));
+  display.println(gps.location.lat(),5);
+  display.setCursor(0,24); 
+  display.print(F("Lon: "));
+  display.println(gps.location.lng(), 5);
+  //display.setCursor(0,36); 
+  //display.print(F("Sat: "));
+  //display.println(gps.satellites.value());
+  display.setCursor(0,36); 
+  display.print("Alt: ");
+  display.print(gps.altitude.feet() / 3.2808);
+  display.println("m");
+  display.setCursor(0,48);
+  display.print(F("km/h: "));
+  display.println(gps.speed.kmph());
+  display.setCursor(0,60);
+  display.print(F("Azm: "));
+  display.println(gps.course.deg());
+  
 
+  // RELOJ
+  /*
+  display.clearDisplay();
+  display.display();
+  display.setCursor(22,25);  
+  display.print(gps.date.day());
+  display.print(F("-"));
+  display.print(gps.date.month());
+  display.print(F("-"));
+  display.println(gps.date.year());
+  display.setCursor(30,50);  
+  display.print(gps.time.hour());
+  display.print(":");
+  display.print(gps.time.minute());
+  display.print(":");
+  display.print(gps.time.second());
+  display.print(".");
+  display.println(gps.time.centisecond());
+  */
+   display.display();
   // Aqui se modifia la velocidad de refresco en ms
-  smartDelay(5000);                                      
+  smartDelay(1000);                                      
 
   if (millis() > 5000 && gps.charsProcessed() < 10)
     Serial.println(F("No GPS data received: check wiring"));
@@ -155,4 +203,3 @@ static void smartDelay(unsigned long ms)
       gps.encode(Serial1.read());
   } while (millis() - start < ms);
 }
-

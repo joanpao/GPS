@@ -1,5 +1,5 @@
 # GPS
-Programas para Lilygo T-Beam V1.2
+Programas para Lilygo T-Beam V1.2 (Puede adquirilo a buen precio en https://s.click.aliexpress.com/e/_c42M25rj )
 Este repositorio contiene varios programas adaptados a la placa ESP32 Lilygo T-Beam v1.2
 En concreto se ha provado con una placa 433 MHz con pantalla OLED y NEO-6M(GPS)
 Todos los programas usan TinyGPSPlus.h que debe incluirla en la libreria de Arduino IDE

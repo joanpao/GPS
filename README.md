@@ -1,14 +1,47 @@
 # GPS
-Programas para Lilygo T-Beam V1.2 (Puede adquirilo a buen precio en https://s.click.aliexpress.com/e/_c42M25rj )
-Este repositorio contiene varios programas adaptados a la placa ESP32 Lilygo T-Beam v1.2
-En concreto se ha provado con una placa 433 MHz con pantalla OLED y NEO-6M(GPS)
-Todos los programas usan TinyGPSPlus.h que debe incluirla en la libreria de Arduino IDE
-- GPS.ino es un programa sencillo para probar que la placa funciona y cuya salida de datos GPS es via el puerto serie
-- GPS_Display.ino es una versión mejorada del programa anterior en la que se incluye tambien la salida a traves de la pantalla OLED, lo que permite usar la placa con su bateria. Para este programa neesita que incluya en el proyecto los programas Fixed8x16.h, Adafruit_SSD1306.h y Adafruit_SSD1306.cpp y que incluya en la biblioteca de arduino IDE SPI.h y Wire.h
-Se han definido tres tipos de salida: GPS estar+tico, GPS en movimiento y reloj que comentando y descomentando puede adaptarse a las necesidades de cada uno
-- GPS_Beacon.ino es una versión mejorada del anterior en la que se han comentado las salidas series y por pantalla, para incluir la transmisión del los datos GPS que deseeemos mediante LoRa codificado en Morse, para ello aprovechamos el desarrollo de morse-beacon.ino Hay que incluir en la libbreia los programas LoRa.h y LoRa.ccp. 
 
-Conocer el funcionamiento del chip GPS incluido es la placa Lilygo T-Beam nos abre la posibilidad de nuevos desarrollos como
-- Servidor NTP basado en GPS
-- Transmisor WSPR (requiere denGPS para el sincronismo, se requiere licencia de radioaficionado)
+Programs for the Lilygo T-Beam V1.2 (you can purchase it at a good price here:  
+https://s.click.aliexpress.com/e/_c42M25rj)
+
+This repository contains several programs adapted for the ESP32 Lilygo T-Beam v1.2 board.
+
+It has been specifically tested with a **433 MHz version including OLED display and NEO-6M (GPS)**.
+
+All programs use **TinyGPSPlus.h**, which must be added to your Arduino IDE libraries.
+
+## Files
+
+- **GPS.ino**  
+  A simple program to test that the board is working. GPS data is sent via the serial port.
+
+- **GPS_Display.ino**  
+  An improved version of the previous program that also outputs data to the OLED display, allowing the board to be used with its battery.  
+  For this program, you must include the following files in the project:
+  - `Fixed8x16.h`
+  - `Adafruit_SSD1306.h`
+  - `Adafruit_SSD1306.cpp`  
+  You must also have the following libraries installed in the Arduino IDE:
+  - `SPI.h`
+  - `Wire.h`
+
+  Three output modes have been defined:
+  - Static GPS
+  - GPS while moving
+  - Clock  
+  By commenting or uncommenting sections, it can be adapted to your needs.
+
+- **GPS_Beacon.ino**  
+  An improved version of the previous one in which serial and OLED outputs have been commented out in order to include transmission of selected GPS data via LoRa encoded in Morse code.  
+  This is based on the development in `morse-beacon.ino`.  
+  You must include the following in your library:
+  - `LoRa.h`
+  - `LoRa.cpp`
+
+## Future possibilities
+
+Understanding the operation of the GPS chip included in the Lilygo T-Beam board opens the door to new developments such as:
+
+- GPS-based NTP server
+- WSPR transmitter (requires GPS for synchronization and a ham radio license)
 - APRS
+
